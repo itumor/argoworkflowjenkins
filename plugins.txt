@@ -1,3 +1,3 @@
-git:5.2.1
-credentials:2.68
-scm-api:2.48
+git:4.11.2
+credentials:2.6.5
+scm-api:2.6.5
