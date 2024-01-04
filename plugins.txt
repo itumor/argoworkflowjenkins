@@ -9,3 +9,4 @@ ssh-credentials:1.18.1
 plain-credentials:1.7
 trilead-api:1.0.5
 script-security:1131.v8b_b_5eda_c328e
+caffeine-api:2.9.2-29.v717aac953ff3
