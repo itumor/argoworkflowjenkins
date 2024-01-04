@@ -5,7 +5,7 @@ metadata:
   annotations:
     workflows.argoproj.io/description: |
       This is a workflow template that allows you to run a Jenkinsfile pipeline in a
-      container by using the `jenkins/jenkinsfile-runner` image.
+      container by using the `jenkins/jenkinsfile-runner:latest` image.
     workflows.argoproj.io/maintainer: '@dcherman'
     workflows.argoproj.io/tags: jenkins,ci
     workflows.argoproj.io/version: '>= 2.9.0'
@@ -17,19 +17,12 @@ spec:
     inputs:
       artifacts:
         - name: jenkinsfile
-          path: /jenkinsfile
+          path: /pipeline/jenkinsfile
           git:
             repo: 'https://github.com/itumor/argoworkflowjenkins.git'
-            path: 'Jenkinsfile'
-        - name: plugins
-          path: /plugins.txt
-          git:
-            repo: 'https://github.com/itumor/argoworkflowjenkins.git'
-            path: 'plugins.txt'
-          optional: true
       parameters:
       - name: image
-        value: jenkins/jenkinsfile-runner
+        value: jenkins/jenkinsfile-runner:latest
       - name: build-number
         value: 1
       - name: cause
@@ -42,13 +35,13 @@ spec:
       source: |
         set -euox pipefail
 
-        ARGS=(--file="/jenkinsfile")
-        ARGS+=(--build-number="{{inputs.parameters.build-number}}")
+        ARGS=(--build-number="{{inputs.parameters.build-number}}")
         ARGS+=(--cause="{{inputs.parameters.cause}}")
         ARGS+=(--job-name="{{inputs.parameters.job-name}}")
-
-        if [[ -f /plugins.txt ]]; then
-          ARGS+=(--plugins="/   .txt")
-        fi
-
-        /app/bin/jenkinsfile-runner-launcher "${ARGS[@]}"
+        cp -r /pipeline/jenkinsfile /tmp/jenkins
+        cp -r /pipeline/jenkinsfile /workspace
+        cp -r /pipeline/jenkinsfile/plugins.txt /usr/share/jenkins/ref/plugins/plugins.txt
+        ls -la /tmp/jenkins
+        ls -la /workspace
+        ls -la /usr/share/jenkins/ref/plugins
+        /app/bin/jenkinsfile-runner  -p /tmp/jenkins/plugins.txt  -f /workspace -jv 2.346.1  "${ARGS[@]}"
