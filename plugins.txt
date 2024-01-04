@@ -1,3 +1,7 @@
-git:4.11.2
+structs:1.23
 credentials:2.6
 scm-api:2.6.5
+git:4.11.2
+workflow-scm-step:2.13
+workflow-step-api:622.vb_8e7c15b_c95a_
+credentials-binding:1.27.1
