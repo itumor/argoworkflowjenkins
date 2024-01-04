@@ -1,5 +1,5 @@
 structs:1.23
-credentials:2.6
+credentials:2.6.1
 scm-api:2.6.5
 git:4.11.2
 workflow-scm-step:2.13
@@ -8,3 +8,4 @@ credentials-binding:1.27.1
 ssh-credentials:1.18.1
 plain-credentials:1.7
 trilead-api:1.0.5
+script-security:1131.v8b_b_5eda_c328e
