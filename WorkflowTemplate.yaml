@@ -44,4 +44,6 @@ spec:
         ls -la /tmp/jenkins
         ls -la /workspace
         ls -la /usr/share/jenkins/ref/plugins
-        /app/bin/jenkinsfile-runner  -p /tmp/jenkins/plugins.txt  -f /workspace -jv 2.346.1  "${ARGS[@]}"
+        /app/bin/jenkinsfile-runner  -p /tmp/jenkins/plugins.txt  -f /workspace -jv 2.346.1 "${ARGS[@]}"
+        #/app/bin/jenkinsfile-runner  -p /usr/share/jenkins/ref/plugins -f /workspace -jv 2.346.1 "${ARGS[@]}"
+        #2.346.1
